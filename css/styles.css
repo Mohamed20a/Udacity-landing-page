@@ -1,0 +1,248 @@
+/* ---- Base Rules ---- */
+body {
+    background: rgb(136,203,171);
+    background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    color: #fff;
+}
+
+/* Header Styles */
+.page__header {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+/* Navigation Styles*/
+.navbar__menu ul {
+    padding-left: 0;
+    margin: 0;
+    text-align: right;
+}
+.navbar__menu li {
+    display: inline-block;
+}
+.navbar__menu .menu__link {
+    display: block;
+    padding: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    transition: .3s all;
+}
+.navbar__menu .menu__link:hover {
+    background: #0d6f96;
+    color: #fff;
+    transition: ease 0.6s all;
+}
+.navbar__menu .menu__link.active {
+    background: #0d6f96;
+    color: #fff;
+    transition: ease 0.6s all;
+}
+
+/* The btn Style To Add New Section And Items */
+.navbar__menu #btn {
+    position: absolute;
+    top: 100%;
+    border-radius: 0px 39px 0px 20px;
+    width: 5.5em;
+    height: 2.5em;
+    outline: 0px;
+    border: 0px;
+    font-size: 18.5px;
+    font-weight: bold;
+    background-color: #1ca4b6;
+    color: white;
+    cursor: pointer;
+}
+.navbar__menu #btn:hover {
+    background-color: #26dff7;
+    color: rgb(255, 255, 255);
+}
+
+/* Typeography General*/
+
+h1 {
+    color: hsl(0deg 0% 100%);
+    font-size: 4em;
+    font-weight: bold;
+    letter-spacing: 7px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 3em;
+    padding: 64px;
+    background: linear-gradient(to right, hsl(189deg 12% 95%) 0, hsl(0, 0%, 100%) 10%, hsl(192deg 86% 48%) 20%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s infinite linear;
+} 
+/* Animation h1 */
+@keyframes shine {
+    0% {
+    background-position: 0;
+    }
+    60% {
+    background-position: 900px;
+    }
+    100% {
+    background-position: 900px;
+    }
+}
+
+
+/* ---- Layout Rules ---- */
+
+section {
+    position: relative;
+    min-height: 80vh;
+    
+}
+h2 {
+    border-bottom: 1px solid #cc1;
+    font-family: 'Oxygen', Sans-Serif;
+    font-size: 3em;
+    color: #fff;
+}
+p {
+    line-height: 1.6em;
+    color: #eee;
+}
+/* ----Landing Container Styles---- */
+.landing__container {
+    padding: 1em;
+    text-align: left;
+}
+@media only screen and (min-width: 35em){
+    .landing__container {
+        max-width: 50em;
+        padding: 4em;
+    }
+}
+section:nth-of-type(even) .landing__container {
+    margin-right: 0;
+    margin-left: auto;
+    text-align: right; 
+}
+/* -----Background Circles----- */
+section:nth-of-type(odd) .landing__container::before {
+    content: '';
+    background: rgba(255, 255, 255, 0.187);
+    position: absolute;
+    z-index: -5;
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+section:nth-of-type(even) .landing__container::before {
+    content: '';
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+    position: absolute;
+    top: 3em;
+    right: 3em;
+    z-index: -5;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+section:nth-of-type(3n) .landing__container::after {
+    content: '';
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -5;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+section:nth-of-type(3n + 1) .landing__container::after {
+    content: '';
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+    position: absolute;
+    right: 20vw;
+    bottom: -5em;
+    z-index: -5;
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+/*---- Section Active Styles----- */
+section.your-active-class {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+section.your-active-class .landing__container::before {
+    opacity: 1;
+    animation: rotate 4s linear 0s infinite forwards;
+}
+section.your-active-class .landing__container::after {
+    opacity: 1;
+    animation: rotate 5s linear 0s infinite forwards reverse;
+}
+/* Section Active Styles Keyframe Animations */
+@keyframes rotate {
+	from {
+		transform: rotate(0deg)
+		translate(-1em)
+		rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg)
+		translate(-1em) 
+		rotate(-360deg);
+	}
+}
+
+
+
+/* Footer Styles */
+.page__footer {
+    background: #000;
+    padding: 3em;
+    color: #fff;
+}
+.page__footer p{
+    color: #fff;
+}
+
+
+
+/* Scroll Up */
+.scrollBtn{
+    direction: rtl;
+    position: fixed;
+    right: 20px;
+    bottom: 0;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d6f96;
+    border-radius: 50%;
+    font-size: 20px;
+    transition: 0s bottom ease-in-out;
+    bottom: -50px;
+    cursor: pointer;
+}
+.scrollBtn.active{
+    bottom: 20px;
+}
+
