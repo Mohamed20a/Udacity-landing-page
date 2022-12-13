@@ -1,4 +1,8 @@
 /* ---- Base Rules ---- */
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     background: rgb(136,203,171);
     background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
@@ -38,31 +42,9 @@ body {
     color: #fff;
     transition: ease 0.6s all;
 }
-.navbar__menu .menu__link.active {
-    background: #0d6f96;
-    color: #fff;
-    transition: ease 0.6s all;
-}
 
 /* The btn Style To Add New Section And Items */
-.navbar__menu #btn {
-    position: absolute;
-    top: 100%;
-    border-radius: 0px 39px 0px 20px;
-    width: 5.5em;
-    height: 2.5em;
-    outline: 0px;
-    border: 0px;
-    font-size: 18.5px;
-    font-weight: bold;
-    background-color: #1ca4b6;
-    color: white;
-    cursor: pointer;
-}
-.navbar__menu #btn:hover {
-    background-color: #26dff7;
-    color: rgb(255, 255, 255);
-}
+
 
 /* Typeography General*/
 
