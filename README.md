@@ -1,18 +1,38 @@
 # Landing Page Project
 
-This is my first project, and I hope to be successful in using the tools that I learned to implement what is required of me in this project.
+This project is about to build a multi-section landing page, with a dynamically updating navigational menu based on the amount of content that is added to the page.
 
 ## Description
 
-This is a basic landing page that uses Javascript to create a NavBar dynamically and to highlight sections when scrolled. The project uses HTML, CSS, and Javascript.
+This Project aims to manipulate the DOM. It shows two main functionalities:
+-It adds menu items to Navigation bar dynamically.
+-Shows "Active" state of the section.
 
-* [Instructions](#instructions)
+## Technologies
+HTML
+CSS
+Javascript
 
-## Instructions
+### Architecture
 
+-index.html
+css
+    - style.css
+js
+    - app.js
+-README.md
+  
+### Functionalities
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+-Menu items are being added dynamically by Javascript
+-When clicking a menu item from the navigation menu, the link should scroll to the appropriate section
+-While scrolling through the page corrosponding item from the navigation menu should be active
+-Active section and rest all other sections are visible in the navigation bar all the time
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Runtime Environment
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+To run the project, download the code and open the index.html file in the browser.
+
+## Installation
+
+This project works without any framework so it does not require any framework to be installed.
