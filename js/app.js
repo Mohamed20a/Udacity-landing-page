@@ -13,22 +13,92 @@
  * 
 */ 
 
+const navList = document.getElementById('navbar__list');
+const sections = document.querySelectorAll('section');
+const navItems = [];
+
+
+/**
+ * End Global Variables
+ * Start Helper Functions
+ * 
+*/
+
+//Extract section ids as navigation items.
+for (let i = 0; i < sections.length; i++) {
+    const sec = sections[i];
+    navItems.push(sec.getAttribute('id'));
+}
+
+
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ * 
+*/
+
+// build the nav
+const navBar = () => {
+    for (let i = 1; i <= navItems.length; i++) {
+        const newList = document.createElement('li');
+        const newLinks = document.createElement('a');
+        newLinks.setAttribute('class', 'menu__link');
+        newLinks.classList.add(`section${i}`);
+        newLinks.setAttribute('href', `#section${i}`);
+        newLinks.textContent = `Section ${i}`;
+        newList.appendChild(newLinks);
+        navList.appendChild(newList);
+    }
+};
+// Build menu 
+navBar();
+
 // Scroll to section on link click
 // to Add Active to items in class 
 // Add class 'active' to section when near top of viewport
-const links = document.querySelectorAll(".menu__link");
-const sections = document.querySelectorAll("section");
+const isInViewport = element => {
+    const position = element.getBoundingClientRect();
+    return (position.top <= 150 && position.bottom >= 150) ? true : false;
+};
 
-function activeMenu(){
-    let len = sections.length;
-    while(--len && window.scrollY + 97 < sections[len].offsetTop){}
-    // To Delete Active to items in class After  going from the Sections directly
-    links.forEach(ltx => ltx.classList.remove("active"));
-    // To Add Active to items in class After  going to the Sections directly
-    links[len].classList.add("active");
-}
-activeMenu();
-window.addEventListener("scroll", activeMenu);
+const classActive = () => {
+    document.addEventListener('scroll', () => {
+        for (const section of sections) {
+            if (isInViewport(section)) {
+                // To Add Active to items in class After  going to the Sections directly
+                const id = section.getAttribute('id');
+                document.querySelector(`.${id}`).classList.add('active');
+                section.classList.add('your-active-class');
+            } else {
+                // To Delete Active to items in class After  going from the Sections directly
+                const id = section.getAttribute('id');
+                document.querySelector(`.${id}`).classList.remove('active');
+                section.classList.remove('your-active-class');
+            }
+        }
+    });
+};
+// Set sections as active
+classActive();
+
+
+// Scroll to anchor ID using scrollTO event
+const scrollSmoothly = () => {
+    document.addEventListener('click', e => {
+        const target = e.target;
+        if (!target.classList.contains('menu__link'))
+            return;
+        e.preventDefault();
+        const targetId = target.hash;
+        document.querySelector(targetId).scrollIntoView({
+            inline: 'nearest',
+            block: 'start',
+            behavior: 'smooth',
+        });
+    });
+};
+// Scroll to section on link click
+scrollSmoothly();
 
 
 
@@ -38,7 +108,6 @@ let scrollBtnUP = document.querySelector(".scrollBtn");
 window.addEventListener("scroll", ()=>{
     scrollUp()
 })
-
 // Scroll to anchor ID using scrollTO event
 // It moves smoothly by just clicking on it
 scrollBtnUP.addEventListener('click', ()=>{
@@ -48,10 +117,16 @@ scrollBtnUP.addEventListener('click', ()=>{
     })
 })
 scrollUp()
-
 // It becomes active when it reaches the bottom
 // Its activity ends when it returns to the top
 function scrollUp(){
     window.scrollY > 100 ?  scrollBtnUP.classList.add('active') :
                             scrollBtnUP.classList.remove('active');
 }
+
+
+/**
+ * End Main Functions
+ * Begin Events
+ * 
+*/
